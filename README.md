@@ -20,7 +20,7 @@ As this develops, I'm going to add some documentation and data relationship diag
 
 This is just garden-variety Java that any remotely recent JDK installation will be able to compile and run. If I use any newer features of Java 7 or 8, I'll note it in this readme file. No build system has been used.
 
-From the terminal inside the source code's working directory:
+From the terminal, inside the src directory:
 
 	$ javac *.java
 
