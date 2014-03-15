@@ -3,30 +3,42 @@ import java.util.*;
 
 public class Artist
 {
-	public String name;
+	private String name;
 	private ArrayList<String> playedGenres;
 
 	public Artist(String name)
 	{
-		this.name = name;
-
+		setName(name);
 		playedGenres = new ArrayList<String>();
 	}
 
-	public void addPlayedGenre(String name)
+	private void setName(String name)
 	{
-		// Add at end by default
-		this.addPlayedGenre(name, -1);
+		/* In the actual site, this would be the 'refname' or server-friendly ID name of the
+		 * artist. Changing this would mess things up and break links on past event pages.
+		 * Actual website/DB will have seperate 'Display Name' that can be changed. */
+		this.name = name;
 	}
 
+	public String getName() { return name; }
+
+	/**
+	 * Add a genre to the list of what the artist plays at the very end (least often played.)
+	 */
+	public void addPlayedGenre(String name) { this.addPlayedGenre(name, -1); }
+
+	/**
+	 * Add a genre to the list of what the artist plays at a certain position.
+	 */
 	public void addPlayedGenre(String name, int position)
 	{
 		// TODO :: Check to see if genre already added, if so then just change its place in list
+		// TODO :: Force these to match a defined table of genre names for data consistency.
 
 		if (position == 0)
 		{
 			// Add at beginning
-			playedGenres.add(0, name);
+			playedGenres.add(0, name); 
 		} else if (position < 0 || position >= playedGenres.size()) {
 			// Add at end
 			playedGenres.add(name);
@@ -46,19 +58,27 @@ public class Artist
 		}
 	}
 
-	public int getNumplayedGenres()
-	{
-		return playedGenres.size();
-	}
+	public int getNumPlayedGenres() { return playedGenres.size(); }
 
+	public ArrayList<String> getListOfPlayedGenres() { return playedGenres; }
+
+	/**
+	 * Normalize values across even scale from 0.0 to 1.0 and return as HashMap (with genre names.)
+	 */
 	public HashMap<String, Float> getNormalizedGenres()
 	{
+		/* This works for what events must calculate (% of each genre weight across lineup),
+		 * but artists need to be able to define % of roughly how much they play each genre,
+		 * and then calculate from that. Events must get an event and fair genre weight score
+		 * for artists and using this hierarchical algorithm is not at all accurate enough. */
+
+		// TODO :: Move this into Event class when written, and rewrite artist algorithm.
 		if (! playedGenres.isEmpty())
 		{
 			HashMap<String, Float> normalized = new HashMap<String, Float>(playedGenres.size());
 			int numGenres = playedGenres.size();
-			float normalRangeMin = 1.0f;
-			float normalRangeMax = 10.0f;
+			float normalRangeMin = 0.0f;
+			float normalRangeMax = 1.0f;
 
 			System.out.println("> Normalizing " + this.name + "'s genre specialization weight ("
 				+ normalRangeMin + " to " + normalRangeMax + "):");
@@ -83,6 +103,9 @@ public class Artist
 		}
 	}
 
+	/**
+	 * Returns out a textual representation of what genres the artist plays.
+	 */
 	public String toString()
 	{
 		int numGenres = playedGenres.size();
