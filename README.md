@@ -2,7 +2,7 @@
 
 ## What is this?
 
-In short, AfterglowATL is an upcoming website for the Atlanta rave/electronic music scene aiming to serve as a unifying hub and local music discovery network.
+In short, ***AfterglowATL*** is an upcoming website for the Atlanta rave/electronic music scene aiming to serve as a unifying hub and local music discovery network.
 
 This code is just a sandbox for me to use object-oriented Java code to develop, refine, and test some of the algorithms I'm going to use to connect users with content, events, DJs, and mixes they will most likely be interested in based on their genre preferences.
 
@@ -22,8 +22,12 @@ This is just garden-variety Java that any remotely recent JDK installation will 
 
 From the terminal inside the source code's working directory:
 
-	javac *.java
+	$ javac *.java
 
-	java AGContentTargetingPrototype
+	$ java AGContentTargetingPrototype
 
 For now, everything is heavily commented and I have provided no additional documentation.
+
+## Contact Me
+
+If for any reason you'd like to contact me or want to network, I can be easily reached through [**Facebook**](http://facebook.com/astraljunkie) or at **amber@afterglowatl.com**.
