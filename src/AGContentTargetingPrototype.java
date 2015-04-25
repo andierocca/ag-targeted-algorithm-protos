@@ -17,6 +17,14 @@ public class AGContentTargetingPrototype
 		artist.addPlayedGenre("Minimal Techno");
 		artist.addPlayedGenre("Trance");
 		artist.addPlayedGenre("Ambient");
+		//having a stroke (testing out spelling corrections)
+		//hard acid trance
+		artist.addPlayedGenre("Harf acid transe");
+		//deep house
+		artist.addPlayedGenre("derp hoz");
+		//hard mode: downtempo
+		artist.addPlayedGenre("owgtemurrru");
+
 
 		System.out.println(artist); // Test the toString() method.
 

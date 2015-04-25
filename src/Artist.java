@@ -5,11 +5,21 @@ public class Artist
 {
 	private String name;
 	private ArrayList<String> playedGenres;
+	private ArrayList<String> genreDictionary;
 
 	public Artist(String name)
 	{
 		setName(name);
 		playedGenres = new ArrayList<String>();
+		genreDictionary = new ArrayList<String>();
+		genreDictionary.add("Progressive Psytrance");
+		genreDictionary.add("Minimal Techno");
+		genreDictionary.add("Trance");
+		genreDictionary.add("Ambient");
+		genreDictionary.add("Hard Acid Trance");
+		genreDictionary.add("Deep House");
+		genreDictionary.add("Downtempo");
+		//TODO :: add more acceptable genres :)
 	}
 
 	private void setName(String name)
@@ -32,8 +42,20 @@ public class Artist
 	 */
 	public void addPlayedGenre(String name, int position)
 	{
-		// TODO :: Check to see if genre already added, if so then just change its place in list
 		// TODO :: Force these to match a defined table of genre names for data consistency.
+		name = EditDistance.findClosestMatch(genreDictionary, name);
+
+		// TODO :: Check to see if genre already added, if so then just change its place in list
+		// might want to use position -1 depending on if you're not already accounting for normal people not using 0-based indexing :P
+		//-1 if not in playedGenres
+		int currentPosition = playedGenres.indexOf(name);
+		if (currentPosition != -1){
+			if (currentPosition != position) {
+				playedGenres.remove(currentPosition);
+			}
+			//do not need to change anything 
+			else { return; }
+		}
 
 		if (position == 0)
 		{
